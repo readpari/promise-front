@@ -2,13 +2,15 @@
   "name": "promise-front",
   "private": true,
   "scripts": {
-    "bootstrap": "yarn lerna bootstrap",
-    "components": "yarn lerna run storybook --stream"
+    "clean": "lerna clean -y",
+    "bootstrap": "lerna bootstrap",
+    "components": "lerna run storybook --stream"
   },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
     "lerna": "^6.4.1"
-  }
+  },
+  "version": "0.0.0"
 }
