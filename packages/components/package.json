@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "webpack-cli": "^5.0.1",
+    "@storybook/cli": "^6.5.16",
     "@promise-front/config": "0.0.0",
     "@babel/core": "^7.20.12",
     "@storybook/addon-actions": "^6.5.16",
