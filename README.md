@@ -1,7 +1,7 @@
 # installation
 
 ```
-    sudo npm install lerna -g
+    sudo npm install lerna yarn -g
     lerna bootstrap 
     lerna link
 ```
