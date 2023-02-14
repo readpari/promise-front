@@ -5,12 +5,13 @@
     "author": "Evgeny <e.litvinenko@mute-lab.com>",
     "homepage": "",
     "license": "ISC",
-    "main": "index.ts",
+    "main": "./src/index.ts",
     "directories": {
-        "test": "__tests__"
+        "test": "__tests__",
+        "src": "src"
     },
     "files": [
-        "lib"
+        "src"
     ],
     "scripts": {
         "test": "node ./__tests__/config.test.js"

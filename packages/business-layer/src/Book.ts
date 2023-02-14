@@ -1,5 +1,6 @@
 import * as EpubJS from "epubjs";
 import { NavItem } from "epubjs/types/navigation";
+import { CacheBookStrategy, LocalStorageCache } from "./CacheBookStrategy";
 
 export interface Book {
   render(selector: string): Promise<Book>;
@@ -7,15 +8,20 @@ export interface Book {
   prevPage(): Book;
   setPage(navItem: NavItem): Promise<Book>;
   getAnnotations(): Promise<EpubJS.NavItem[]>;
-
   getMetaField(field: string): Promise<string>;
+  getLocation(): EpubJS.Location;
 }
 
 export class BookImpl implements Book {
   private readonly bookInstance: EpubJS.Book;
+  private readonly cacheStrategy: CacheBookStrategy = new LocalStorageCache();
   private rendition: EpubJS.Rendition;
 
   private displayed: boolean;
+
+  protected async onLocationChange() {
+    await this.cacheStrategy.save(this);
+  }
 
   constructor(blob: ArrayBuffer) {
     this.bookInstance = new EpubJS.Book(blob as unknown as string);
@@ -27,8 +33,16 @@ export class BookImpl implements Book {
       height: "85vh",
     });
 
-
     await this.rendition.display();
+
+    // книга из кэша
+    const cachedBook = await this.cacheStrategy.get(this);
+
+    if (cachedBook) {
+      await this.rendition.display(cachedBook.location.start.cfi);
+    }
+
+    this.rendition.on("locationChanged", this.onLocationChange.bind(this));
 
     this.displayed = true;
 
@@ -58,9 +72,12 @@ export class BookImpl implements Book {
     return this;
   }
 
+  getLocation(): EpubJS.Location {
+    return this.rendition.currentLocation() as unknown as EpubJS.Location;
+  }
+
   async getMetaField(field: string): Promise<string> {
     const metadata = await this.bookInstance.loaded.metadata;
-    console.log(metadata);
 
     return metadata[field as keyof typeof metadata] ?? "";
   }
