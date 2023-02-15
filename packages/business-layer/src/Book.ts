@@ -10,6 +10,8 @@ export interface Book {
   getAnnotations(): Promise<EpubJS.NavItem[]>;
   getMetaField(field: string): Promise<string>;
   getLocation(): EpubJS.Location;
+
+  getBuffer(): ArrayBuffer;
 }
 
 export class BookImpl implements Book {
@@ -82,5 +84,9 @@ export class BookImpl implements Book {
     const metadata = await this.bookInstance.loaded.metadata;
 
     return metadata[field as keyof typeof metadata] ?? "";
+  }
+
+  getBuffer(): ArrayBuffer {
+    return this.buffer;
   }
 }
