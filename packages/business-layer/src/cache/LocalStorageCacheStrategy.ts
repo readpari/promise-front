@@ -1,16 +1,14 @@
 import { LocalStorageSingleton, Storage } from "../LocalStorageWrapper";
 import { BookImpl } from "../Book";
 import { CacheBookStrategy, SavedBook } from "./types";
+import { CacheBookStrategyABS } from "./CacheBookStrategyABS";
 
-export class LocalStorageCache implements CacheBookStrategy {
+export class LocalStorageCache
+  extends CacheBookStrategyABS
+  implements CacheBookStrategy
+{
   private readonly __localstorage: Storage = new LocalStorageSingleton();
 
-  protected async getBookId(book: BookImpl): Promise<string> {
-    const author = await book.getMetaField("author");
-    const title = await book.getMetaField("title");
-
-    return `${author}-${title}`;
-  }
   async save(book: BookImpl): Promise<void> {
     const savedBook: Partial<SavedBook> = {};
 
