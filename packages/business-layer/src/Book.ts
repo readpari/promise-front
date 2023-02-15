@@ -13,6 +13,7 @@ export interface Book {
 }
 
 export class BookImpl implements Book {
+  private readonly buffer: ArrayBuffer;
   private readonly bookInstance: EpubJS.Book;
   private readonly cacheStrategy: CacheBookStrategy = new LocalStorageCache();
   private rendition: EpubJS.Rendition;
@@ -25,6 +26,7 @@ export class BookImpl implements Book {
 
   constructor(blob: ArrayBuffer) {
     this.bookInstance = new EpubJS.Book(blob as unknown as string);
+    this.buffer = blob;
   }
 
   async render(selector: string): Promise<Book> {
