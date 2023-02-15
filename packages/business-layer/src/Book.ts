@@ -45,6 +45,8 @@ export class BookImpl implements Book {
 
     if (cachedBook) {
       await this.rendition.display(cachedBook.location.start.cfi);
+    } else {
+      await this.cacheStrategy.save(this);
     }
 
     this.rendition.on("locationChanged", this.onLocationChange.bind(this));
