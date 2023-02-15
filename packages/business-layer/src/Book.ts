@@ -1,6 +1,6 @@
 import * as EpubJS from "epubjs";
 import { NavItem } from "epubjs/types/navigation";
-import { LocalStorageCache, CacheBookStrategy } from "./cache";
+import { CacheBookStrategy, IndexedDBCacheStrategy } from "./cache";
 
 export interface Book {
   render(selector: string): Promise<Book>;
@@ -17,7 +17,8 @@ export interface Book {
 export class BookImpl implements Book {
   private readonly buffer: ArrayBuffer;
   private readonly bookInstance: EpubJS.Book;
-  private readonly cacheStrategy: CacheBookStrategy = new LocalStorageCache();
+  private readonly cacheStrategy: CacheBookStrategy =
+    new IndexedDBCacheStrategy();
   private rendition: EpubJS.Rendition;
 
   private displayed: boolean;

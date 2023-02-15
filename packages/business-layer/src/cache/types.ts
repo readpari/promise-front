@@ -4,6 +4,8 @@ import { BookImpl } from "../Book";
 export interface SavedBook {
   id: string;
   location?: EpubJS.Location;
+
+  blob: ArrayBuffer;
 }
 
 export interface CacheBookStrategy {

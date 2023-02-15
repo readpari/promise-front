@@ -10,10 +10,7 @@ export class LocalStorageCache
   private readonly __localstorage: Storage = new LocalStorageSingleton();
 
   async save(book: BookImpl): Promise<void> {
-    const savedBook: Partial<SavedBook> = {};
-
-    savedBook.id = await this.getBookId(book);
-    savedBook.location = book.getLocation();
+    const savedBook = await this.savedBookFactory(book);
 
     this.__localstorage.set<SavedBook>(savedBook.id, savedBook as SavedBook);
   }
