@@ -1,15 +1,6 @@
-import * as EpubJS from "epubjs";
-import { LocalStorageSingleton, Storage } from "./LocalStorageWrapper";
-import { BookImpl } from "./Book";
-
-export interface SavedBook {
-  id: string;
-  location?: EpubJS.Location;
-}
-export interface CacheBookStrategy {
-  save(book: BookImpl): Promise<void>;
-  get(book: BookImpl): Promise<SavedBook>;
-}
+import { LocalStorageSingleton, Storage } from "../LocalStorageWrapper";
+import { BookImpl } from "../Book";
+import { CacheBookStrategy, SavedBook } from "./types";
 
 export class LocalStorageCache implements CacheBookStrategy {
   private readonly __localstorage: Storage = new LocalStorageSingleton();

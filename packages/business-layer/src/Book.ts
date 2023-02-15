@@ -1,6 +1,6 @@
 import * as EpubJS from "epubjs";
 import { NavItem } from "epubjs/types/navigation";
-import { CacheBookStrategy, LocalStorageCache } from "./CacheBookStrategy";
+import { LocalStorageCache, CacheBookStrategy } from "./cache";
 
 export interface Book {
   render(selector: string): Promise<Book>;
