@@ -1,0 +1,41 @@
+import { Meta, Story, ArgsTable, CodeOrSourceMdx } from "@storybook/addon-docs";
+import { IndexedDBCacheStrategy } from "@promise-front/business-layer";
+
+<Meta title="IndexedDBCache" component={IndexedDBCacheStrategy} />
+
+# Документация для indexedDBCacheStrategy
+
+Для того, чтобы получить все сохраненные книги нужно:
+
+1. импортировать класс `IndexedDBCacheStrategy`
+2. вызвать метод `getAllSavedBooks`
+
+### Пример
+
+```typescript
+import { IndexedDBCacheStrategy } from "@promise-front/business-layer";
+
+const savedBooks: SavedBook[] = await IndexedDBCacheStrategy.getAllSavedBooks();
+```
+
+На выходе будет массив сохраненных книг
+
+```typescript
+export interface SavedBook {
+  id: string;
+  location?: EpubJS.Location;
+  author?: string;
+  title?: string;
+  description?: string;
+}
+```
+
+где
+
+```
+id: уникальный id книги
+location: страница на которой остановился в последний раз читающий ( если есть )
+author: автор ( если есть )
+title: название книги ( если есть )
+description: описание книги ( если есть )
+```

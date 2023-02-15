@@ -45,7 +45,6 @@ const Book: React.FC<Props> = (props) => {
 
       // Right Key
       if (e.key === "ArrowRight") {
-        console.log("right");
         book.nextPage();
       }
     },
