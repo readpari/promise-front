@@ -24,6 +24,9 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 import CardActions from '@mui/material/CardActions';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CloseIcon from '@mui/icons-material/Close';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+
 const Books: React.FC = (props) => {
   const renderSidebar = useCallback(() => {
     const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'BET'];
@@ -68,7 +71,20 @@ const Books: React.FC = (props) => {
 
     return (
       <>
-        <Button variant="contained">add book</Button>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            mb: 4,
+          }}
+        >
+          <Fab color="primary" aria-label="add">
+            <AddIcon />
+          </Fab>
+          <Typography sx={{ ml: 2, fontSize: '21px' }}>Add book in .epub format</Typography>
+        </Box>
         <Box sx={{ display: 'flex', flexDirection: 'raw', width: '90%', flexWrap: 'wrap' }}>
           {[1, 2, 3, 4, 5].map((item) => (
             <BookCard />
@@ -82,3 +98,4 @@ const Books: React.FC = (props) => {
 };
 
 export default Books;
+
