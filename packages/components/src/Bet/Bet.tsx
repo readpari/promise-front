@@ -8,6 +8,8 @@ import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -15,7 +17,7 @@ import Typography from '@mui/material/Typography';
 
 const Books: React.FC = (props) => {
   const renderSidebar = useCallback(() => {
-    const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'BET'];
+    const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'LOGIN', 'BET'];
     return (
       <List>
         {sideBarItems.map((item, index) => (
@@ -85,45 +87,77 @@ const Books: React.FC = (props) => {
     );
   };
 
+  const BetWas = () => {
+    const style = {
+      width: '100%',
+      maxWidth: 360,
+      bgcolor: 'background.paper',
+    };
+
+    const betWasOptions = ['Hours', 'Deadline', 'Bet', 'Timer'];
+    return (
+      <>
+        <Typography sx={{ textAlign: 'center' }} variant="h5" component="h5">
+          Your bet
+        </Typography>
+        <List sx={style} component="nav" aria-label="mailbox folders">
+          {betWasOptions.map((item) => (
+            <>
+              <ListItem>
+                <ListItemText primary={item} />
+                <ListItemText primary="123" sx={{ textAlign: 'right' }} />
+              </ListItem>
+              <Divider />
+            </>
+          ))}
+        </List>
+      </>
+    );
+  };
+
   const renderContent = useCallback(() => {
     const [days, setDays] = useState(1);
     const [hours, setHours] = useState(1);
     const [betNear, setBetNear] = useState(10);
 
     return (
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <BetCounter
-          step={1}
-          ci={'hours'}
-          count={hours}
-          setCount={setHours}
-          header={'How long are you going to read?'}
-        />
-        <BetCounter
-          step={1}
-          ci={'days'}
-          count={days}
-          setCount={setDays}
-          header={'How many days will you need?'}
-        />
-        <BetCounter
-          step={10}
-          ci={'near'}
-          count={betNear}
-          setCount={setBetNear}
-          header={'How much are you willing to bet?'}
-        />
-        <Button sx={{ width: '50px', m: 3 }} variant="contained">
-          BET
-        </Button>
-      </Box>
+      <>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <BetCounter
+            step={1}
+            ci={'hours'}
+            count={hours}
+            setCount={setHours}
+            header={'How long are you going to read?'}
+          />
+          <BetCounter
+            step={1}
+            ci={'days'}
+            count={days}
+            setCount={setDays}
+            header={'How many days will you need?'}
+          />
+          <BetCounter
+            step={10}
+            ci={'near'}
+            count={betNear}
+            setCount={setBetNear}
+            header={'How much are you willing to bet?'}
+          />
+          <Button sx={{ width: '50px', m: 3 }} variant="contained">
+            BET
+          </Button>
+        </Box>
+
+        <BetWas />
+      </>
     );
   }, []);
 

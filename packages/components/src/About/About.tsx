@@ -14,17 +14,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 const About: React.FC = (props) => {
-  const style = {
-    width: '100%',
-    height: '100%',
-    bgcolor: 'background.paper',
-  };
-  const itemStyle = {
-    textAlign: 'center',
-  };
   const menuItems = ['ABOUT', 'BOOKS', 'READ', 'BET'];
   const renderSidebar = useCallback(() => {
-    const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'BET'];
+    const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'LOGIN', 'BET'];
     return (
       <List>
         {sideBarItems.map((item, index) => (

@@ -98,4 +98,3 @@ const Books: React.FC = (props) => {
 };
 
 export default Books;
-
