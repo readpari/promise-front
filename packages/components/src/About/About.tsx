@@ -122,7 +122,7 @@ const About: React.FC = (props) => {
   }, []);
 
   return (
-    <AppLayout title={'CREDIT BOOK'} renderSidebar={renderSidebar} renderContent={renderContent} />
+    <AppLayout title={'PROMISE READER'} renderSidebar={renderSidebar} renderContent={renderContent} />
   );
 };
 
