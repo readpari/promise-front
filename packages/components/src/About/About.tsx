@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { AppLayout } from '../index';
 import { useCallback, useEffect, useState } from 'react';
@@ -48,16 +47,6 @@ const About: React.FC = (props) => {
       setValue(newValue);
       setTextLang(text[Object.keys(text)[newValue]]);
     };
-    const theme = createTheme({
-      palette: {
-        primary: {
-          main: indigo[50],
-        },
-        secondary: {
-          main: indigo[50],
-        },
-      },
-    });
 
     const textRepl = [
       'Promise reader заставит вас читать',
@@ -78,7 +67,7 @@ const About: React.FC = (props) => {
     };
 
     return (
-      <ThemeProvider theme={theme}>
+      <>
         <Box sx={{ width: '80vw', bgcolor: 'background.paper' }}>
           <Tabs
             value={value}
@@ -109,7 +98,7 @@ const About: React.FC = (props) => {
           }}
         >
           <Fab
-            color="primary"
+            color="inherit"
             sx={{ position: 'absolute', top: '10px', left: '10px' }}
             aria-label="add"
             onClick={() => changeReplica(false)}
@@ -117,7 +106,7 @@ const About: React.FC = (props) => {
             <KeyboardArrowLeftIcon />
           </Fab>
           <Fab
-            color="primary"
+            color="inherit"
             aria-label="add"
             sx={{ position: 'absolute', top: '10px', right: '10px' }}
             onClick={() => changeReplica(true)}
@@ -128,12 +117,12 @@ const About: React.FC = (props) => {
             {textRepl[replNum]}
           </Typography>
         </Paper>
-      </ThemeProvider>
+      </>
     );
   }, []);
 
   return (
-    <AppLayout title={'PROMISE'} renderSidebar={renderSidebar} renderContent={renderContent} />
+    <AppLayout title={'CREDIT BOOK'} renderSidebar={renderSidebar} renderContent={renderContent} />
   );
 };
 
