@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AppLayout } from '../index';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
@@ -26,10 +26,22 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CloseIcon from '@mui/icons-material/Close';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import { IndexedDBCacheStrategy } from '@promise-front/business-layer';
 
 const Books: React.FC = (props) => {
+  const [savedBooks, setSavedBooks] = useState([]);
+
+  const fff = async () => {
+    const f = await IndexedDBCacheStrategy.getAllSavedBooks();
+    setSavedBooks(f);
+  };
+
+  useEffect(() => {
+    fff();
+  }, []);
+
   const renderSidebar = useCallback(() => {
-    const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'BET'];
+    const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'LOGIN', 'BET'];
     return (
       <List>
         {sideBarItems.map((item, index) => (

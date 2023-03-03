@@ -57,14 +57,6 @@ const About: React.FC = (props) => {
       'Если не успеете, то деньги сгорят',
       'Удачного чтения',
     ];
-    const [replNum, setReplNum] = useState(0);
-    const changeReplica = (bool: boolean) => {
-      if (bool) {
-        if (replNum < textRepl.length - 1) setReplNum(replNum + 1);
-      } else {
-        if (replNum > 0) setReplNum(replNum - 1);
-      }
-    };
 
     return (
       <>
@@ -88,33 +80,44 @@ const About: React.FC = (props) => {
           sx={{
             p: 5,
             m: 3,
-            background: '#1976d217',
-            width: '80vw',
-            height: '50vh',
+            background: 'white',
+            width: '50vw',
+            // height: '50vh',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            position: 'relative',
+            flexDirection: 'column',
           }}
         >
-          <Fab
-            color="inherit"
-            sx={{ position: 'absolute', top: '10px', left: '10px' }}
-            aria-label="add"
-            onClick={() => changeReplica(false)}
-          >
-            <KeyboardArrowLeftIcon />
-          </Fab>
-          <Fab
-            color="inherit"
-            aria-label="add"
-            sx={{ position: 'absolute', top: '10px', right: '10px' }}
-            onClick={() => changeReplica(true)}
-          >
-            <KeyboardArrowRightIcon />
-          </Fab>
-          <Typography variant="h4" sx={{ textAlign: 'center' }}>
-            {textRepl[replNum]}
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            Bookchain это приложение для чтения, на основе смарт-контракта. Смарт-контракт - это
+            компьютерная программа, записанная в блокчейн-среде, которая позволяет заключать сделки
+            и контролировать их исполнение без участия посредников. Он гарантирует безопасность
+            сделок, поскольку все условия контракта прописываются в коде и автоматически выполняются
+            при соблюдении установленных условий. В смарт-контракте нет возможности изменить условия
+            после его подписания, что исключает возможность мошенничества.
+          </Typography>
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            Смарт-контракт Bookchain предлагает Вам заключить сделку. Если вы хотите много читать,
+            но не можете себя заставить, то он Вас заставит. От вас нужно всего 3 простых действия:
+          </Typography>
+          <Typography variant="h6" sx={{}}>
+            1. Выберите количество часов, которые вы хотите посвятить чтению.
+          </Typography>
+
+          <Typography variant="h6" sx={{}}>
+            2. Выберите количество дней, в течении которых вы хотите успеть это сделать.
+          </Typography>
+
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            3. Поставьте на кон сумму, расстаться с которой Вам будет невозможно.
+          </Typography>
+
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            Когда вы откроете книгу и начнете листать страницы таймер начнет обратный отсчет. Если
+            вы заснете и перестанете листать страницы или закроете книгу, то таймер остановится. Как
+            только вы справитесь с поставленной задачей деньги вернутся к Вам в полном объеме. Если
+            вы не успеете, то потеряете свои деньги.
           </Typography>
         </Paper>
       </>
@@ -122,9 +125,12 @@ const About: React.FC = (props) => {
   }, []);
 
   return (
-    <AppLayout title={'PROMISE READER'} renderSidebar={renderSidebar} renderContent={renderContent} />
+    <AppLayout
+      title={'PROMISE READER'}
+      renderSidebar={renderSidebar}
+      renderContent={renderContent}
+    />
   );
 };
 
 export default About;
-

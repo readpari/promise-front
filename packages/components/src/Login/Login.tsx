@@ -8,12 +8,13 @@ import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Paper } from '@mui/material';
 
-const About: React.FC = (props) => {
+// @ts-nocheck
+
+const Login: React.FC = (props) => {
   const menuItems = ['ABOUT', 'BOOKS', 'READ', 'BET'];
   const renderSidebar = useCallback(() => {
     const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'LOGIN', 'BET'];
@@ -45,6 +46,14 @@ const About: React.FC = (props) => {
       'Чтобы сделать ставку и начать читать, вы должны войти в кошелек Near',
     ];
 
+    // const signIn = () => {
+    //   wallet.signIn();
+    // };
+
+    // const signOut = () => {
+    //   wallet.signOut();
+    // };
+
     return (
       <Paper
         elevation={3}
@@ -71,5 +80,4 @@ const About: React.FC = (props) => {
   return <AppLayout title={'Login'} renderSidebar={renderSidebar} renderContent={renderContent} />;
 };
 
-export default About;
-
+export default Login;

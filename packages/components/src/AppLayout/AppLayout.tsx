@@ -12,6 +12,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState } from 'react';
+import { GuestBook } from './near-interface';
+import { Wallet } from './near-wallet';
+const wallet = new Wallet({ createAccessKeyFor: 'dev-1675771517442-51764161069193' });
+const guestBook = new GuestBook({
+  contractId: 'dev-1675771517442-51764161069193',
+  walletToUse: wallet,
+});
 
 const drawerWidth = 240;
 
