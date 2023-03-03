@@ -19,6 +19,7 @@ export class IndexedDBCacheStrategy
     );
 
     return savedBooks.map((savedBook) => ({
+      blob: savedBook.blob,
       author: savedBook.author,
       description: savedBook.description,
       id: savedBook.id,

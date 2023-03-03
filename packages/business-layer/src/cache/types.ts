@@ -10,7 +10,7 @@ export interface SavedBook {
   description?: string;
 }
 
-export type SavedBookInfo = Omit<SavedBook, "blob">;
+export type SavedBookInfo = SavedBook;
 
 export interface CacheBookStrategy {
   save(book: BookImpl): Promise<void>;
