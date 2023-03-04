@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "mobx": "^6.8.0",
+    "react-router-dom": "^6.8.2",
     "mobx-react": "^7.6.0",
     "epubjs": "^0.3.93",
     "idb": "^7.1.1"
