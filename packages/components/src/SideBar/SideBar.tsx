@@ -9,7 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 const About: React.FC = (props) => {
   const renderSidebar = useCallback(() => {
-    const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'LOGIN', 'BET'];
+    const sideBarItems = ['ABOUT', 'READ', 'BET'];
     return (
       <List>
         {sideBarItems.map((item, index) => (

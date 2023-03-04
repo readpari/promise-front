@@ -17,18 +17,28 @@ import Typography from '@mui/material/Typography';
 
 const Books: React.FC = (props) => {
   const renderSidebar = useCallback(() => {
-    const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'LOGIN', 'BET'];
+    const sideBarItems = ['ABOUT', 'READ', 'BET'];
     return (
-      <List>
-        {sideBarItems.map((item, index) => (
-          <ListItem button key={index} sx={{ bgcolor: index == 3 ? '#1976d2' : 'white' }}>
-            <ListItemText
-              primary={item}
-              sx={{ textAlign: 'center', color: index == 3 ? 'white' : 'black' }}
-            />
-          </ListItem>
-        ))}
-      </List>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100vh',
+        }}
+      >
+        <List>
+          {sideBarItems.map((item, index) => (
+            <ListItem button key={index} sx={{ bgcolor: index == 0 ? 'cornflowerblue' : 'white' }}>
+              <ListItemText
+                primary={item}
+                sx={{ textAlign: 'center', color: index == 0 ? 'white' : 'black' }}
+              />
+            </ListItem>
+          ))}
+        </List>
+        <Box sx={{ textAlign: 'center', color: 'grey', mb: 3 }}>mail@bookchain.page</Box>
+      </Box>
     );
   }, []);
 
@@ -58,7 +68,7 @@ const Books: React.FC = (props) => {
           alignItems: 'center',
         }}
       >
-        <Typography sx={{ fontSize: '20px', p: 3 }}>{header}</Typography>
+        <Typography sx={{ fontSize: '20px', p: 3, textAlign: 'center' }}>{header}</Typography>
 
         <Box
           sx={{
@@ -70,7 +80,7 @@ const Books: React.FC = (props) => {
           }}
         >
           <Box>
-            <Fab color="primary" aria-label="remove" onClick={minus}>
+            <Fab sx={{ background: 'white' }} aria-label="remove" onClick={minus}>
               <RemoveIcon />
             </Fab>
           </Box>
@@ -78,7 +88,7 @@ const Books: React.FC = (props) => {
             {count} {ci}
           </Typography>
           <Box>
-            <Fab color="primary" aria-label="add" onClick={plus}>
+            <Fab sx={{ background: 'white' }} aria-label="add" onClick={plus}>
               <AddIcon />
             </Fab>
           </Box>
@@ -151,17 +161,19 @@ const Books: React.FC = (props) => {
             setCount={setBetNear}
             header={'How much are you willing to bet?'}
           />
-          <Button sx={{ width: '50px', m: 3 }} variant="contained">
+          <Button sx={{ width: '50px', m: 3, background: 'cornflowerblue' }} variant="contained">
             BET
           </Button>
         </Box>
 
-        <BetWas />
+        {/* <BetWas /> */}
       </>
     );
   }, []);
 
-  return <AppLayout title={'Bet'} renderSidebar={renderSidebar} renderContent={renderContent} />;
+  return (
+    <AppLayout title={'BOOKCHAIN'} renderSidebar={renderSidebar} renderContent={renderContent} />
+  );
 };
 
 export default Books;

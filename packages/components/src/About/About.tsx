@@ -20,20 +20,29 @@ import { indigo } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const About: React.FC = (props) => {
-  const menuItems = ['ABOUT', 'BOOKS', 'READ', 'BET'];
   const renderSidebar = useCallback(() => {
-    const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'LOGIN', 'BET'];
+    const sideBarItems = ['ABOUT', 'READ', 'BET'];
     return (
-      <List>
-        {sideBarItems.map((item, index) => (
-          <ListItem button key={index} sx={{ bgcolor: index == 0 ? '#1976d2' : 'white' }}>
-            <ListItemText
-              primary={item}
-              sx={{ textAlign: 'center', color: index == 0 ? 'white' : 'black' }}
-            />
-          </ListItem>
-        ))}
-      </List>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100vh',
+        }}
+      >
+        <List>
+          {sideBarItems.map((item, index) => (
+            <ListItem button key={index} sx={{ bgcolor: index == 0 ? 'cornflowerblue' : 'white' }}>
+              <ListItemText
+                primary={item}
+                sx={{ textAlign: 'center', color: index == 0 ? 'white' : 'black' }}
+              />
+            </ListItem>
+          ))}
+        </List>
+        <Box sx={{ textAlign: 'center', color: 'grey', mb: 3 }}>mail@bookchain.page</Box>
+      </Box>
     );
   }, []);
 
@@ -48,18 +57,8 @@ const About: React.FC = (props) => {
       setTextLang(text[Object.keys(text)[newValue]]);
     };
 
-    const textRepl = [
-      'Promise reader заставит вас читать',
-      'От вас требуется всего 2 действия',
-      'Выбрать книгу и сделать ставку',
-      'Через сколько дней книга будет прочитана?',
-      'Если успеете в срок, вернете свою ставку',
-      'Если не успеете, то деньги сгорят',
-      'Удачного чтения',
-    ];
-
     return (
-      <>
+      <Box sx={{}}>
         <Box sx={{ width: '80vw', bgcolor: 'background.paper' }}>
           <Tabs
             value={value}
@@ -81,55 +80,23 @@ const About: React.FC = (props) => {
             p: 5,
             m: 3,
             background: 'white',
-            width: '50vw',
-            // height: '50vh',
+            width: '80vw',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            flexDirection: 'column',
+            position: 'relative',
           }}
         >
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            Bookchain это приложение для чтения, на основе смарт-контракта. Смарт-контракт - это
-            компьютерная программа, записанная в блокчейн-среде, которая позволяет заключать сделки
-            и контролировать их исполнение без участия посредников. Он гарантирует безопасность
-            сделок, поскольку все условия контракта прописываются в коде и автоматически выполняются
-            при соблюдении установленных условий. В смарт-контракте нет возможности изменить условия
-            после его подписания, что исключает возможность мошенничества.
-          </Typography>
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            Смарт-контракт Bookchain предлагает Вам заключить сделку. Если вы хотите много читать,
-            но не можете себя заставить, то он Вас заставит. От вас нужно всего 3 простых действия:
-          </Typography>
-          <Typography variant="h6" sx={{}}>
-            1. Выберите количество часов, которые вы хотите посвятить чтению.
-          </Typography>
-
-          <Typography variant="h6" sx={{}}>
-            2. Выберите количество дней, в течении которых вы хотите успеть это сделать.
-          </Typography>
-
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            3. Поставьте на кон сумму, расстаться с которой Вам будет невозможно.
-          </Typography>
-
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            Когда вы откроете книгу и начнете листать страницы таймер начнет обратный отсчет. Если
-            вы заснете и перестанете листать страницы или закроете книгу, то таймер остановится. Как
-            только вы справитесь с поставленной задачей деньги вернутся к Вам в полном объеме. Если
-            вы не успеете, то потеряете свои деньги.
+          <Typography variant="h6" sx={{ textAlign: 'left' }}>
+            {textLang}
           </Typography>
         </Paper>
-      </>
+      </Box>
     );
   }, []);
 
   return (
-    <AppLayout
-      title={'PROMISE READER'}
-      renderSidebar={renderSidebar}
-      renderContent={renderContent}
-    />
+    <AppLayout title={'BOOKCHAIN'} renderSidebar={renderSidebar} renderContent={renderContent} />
   );
 };
 
