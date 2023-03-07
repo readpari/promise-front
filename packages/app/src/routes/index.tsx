@@ -13,7 +13,7 @@ export default createHashRouter([
   { path: "bet", element: <Bet /> },
 
   {
-    path: "book",
+    path: "books",
     element: <Book book={null} />,
   },
 ]);
