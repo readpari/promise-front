@@ -6,12 +6,10 @@ export default createHashRouter([
   {
     path: "/",
     element: <Bet />,
-    children: [
-      { path: "login", element: <Login /> },
-      {
-        path: "book",
-        element: <Book book={null} />,
-      },
-    ],
+  },
+  { path: "login", element: <Login /> },
+  {
+    path: "book",
+    element: <Book book={null} />,
   },
 ]);
