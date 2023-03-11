@@ -28,7 +28,7 @@ export const routes: RouteObject[] = [
         element: <Books />,
       },
       {
-        path: "/book/:id?",
+        path: "/book/:id",
         element: <BookPage />,
       },
     ],

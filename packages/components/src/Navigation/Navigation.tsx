@@ -35,11 +35,6 @@ const routes: Route[] = [
     title: "Books",
     icon: <BookIcon />,
   },
-  {
-    path: "/book",
-    title: "Read",
-    icon: <LocalLibraryIcon />,
-  },
 ];
 
 const Link = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(function Link(

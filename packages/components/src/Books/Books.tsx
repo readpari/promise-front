@@ -13,12 +13,22 @@ import {
 import Book from "./components/Book/Book";
 import { BookImpl } from "@promise-front/business-layer/src/Book";
 import { styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 const BookInput = styled("input")`
   display: none;
 `;
 
+const Label = styled("label")`
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+`;
+
 const Books: React.FC = (props) => {
+  const navigate = useNavigate();
   const [books, setBooks] = useState<SavedBook[]>([]);
   const cache = new IndexedDBCacheStrategy();
 
@@ -69,7 +79,7 @@ const Books: React.FC = (props) => {
           mb: 4,
         }}
       >
-        <label htmlFor={"book_input"}>
+        <Label htmlFor={"book_input"}>
           <Fab
             color="primary"
             aria-label="add"
@@ -77,7 +87,7 @@ const Books: React.FC = (props) => {
           >
             <AddIcon />
           </Fab>
-          <Typography sx={{ ml: 2, fontSize: "21px" }}>
+          <Typography sx={{ mt: 1, fontSize: "21px" }}>
             Add book in .epub format
           </Typography>
 
@@ -88,7 +98,7 @@ const Books: React.FC = (props) => {
             type="file"
             accept={"application/epub+zip"}
           />
-        </label>
+        </Label>
       </Box>
       <Box
         sx={{
@@ -103,7 +113,7 @@ const Books: React.FC = (props) => {
               <Book
                 key={book.id}
                 book={book}
-                onStartRead={() => {}}
+                onStartRead={() => navigate(`/book/${book.id}`)}
                 onDelete={() => onDeleteBook(book.id)}
               />
             ))
