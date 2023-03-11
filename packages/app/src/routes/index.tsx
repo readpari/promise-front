@@ -1,28 +1,37 @@
 import * as React from "react";
 import { createHashRouter, RouteObject } from "react-router-dom";
-import { About, Bet, Book, Login } from "@promise-front/components";
+import {
+  About,
+  Bet,
+  Books,
+  Login,
+  Book,
+  AppLayout,
+} from "@promise-front/components";
 
-interface RouteAdditionalInfo {
-  title: string;
-}
-
-export const routes: (RouteObject & RouteAdditionalInfo)[] = [
+export const routes: RouteObject[] = [
   {
     path: "/",
-    title: "test",
-    element: <About />,
-  },
-  {
-    path: "login",
-
-    title: "test",
-    element: <Login />,
-  },
-  { path: "bet", title: "test", element: <Bet /> },
-  {
-    path: "books",
-    title: "test",
-    element: <Book book={null} />,
+    element: <AppLayout />,
+    children: [
+      {
+        path: "",
+        element: <About />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      { path: "bet", element: <Bet /> },
+      {
+        path: "books",
+        element: <Books />,
+      },
+      {
+        path: "/book/:id?",
+        element: <Book book={null} />,
+      },
+    ],
   },
 ];
 

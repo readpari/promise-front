@@ -1,4 +1,5 @@
 export { default as Book } from "./Book";
+export { default as Books } from "./Books";
 export { default as AppLayout } from "./AppLayout/AppLayout";
 export { default as Bet } from "./Bet/Bet";
 export { default as About } from "./About/About";

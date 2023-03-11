@@ -86,14 +86,6 @@ const Book: React.FC<Props> = (props) => {
     );
   }, [annotations]);
 
-  const renderContent = useCallback(() => {
-    if (!book) {
-      return null;
-    }
-
-    return <div id="book"></div>;
-  }, [book]);
-
   const renderBookActions = useCallback(() => {
     return (
       <Box sx={{ flexGrow: 1, justifyContent: "flex-end", display: "flex" }}>
@@ -108,14 +100,7 @@ const Book: React.FC<Props> = (props) => {
     );
   }, [book]);
 
-  return (
-    <AppLayout
-      title={title}
-      renderSidebar={renderSidebar}
-      renderContent={renderContent}
-      renderAdditionalElementsAppBar={renderBookActions}
-    />
-  );
+  return <div id="book"></div>;
 };
 
 export default Book;

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { AppLayout } from "../index";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 
 import Button from "@mui/material/Button";
@@ -14,76 +14,56 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import Navigation from "../Navigation/Navigation";
 
+import {
+  IndexedDBCacheStrategy,
+  SavedBook,
+} from "@promise-front/business-layer";
+import Book from "./components/Book/Book";
+
 const Books: React.FC = (props) => {
+  const [books, setBooks] = useState<SavedBook[]>([]);
+
   const renderSidebar = useCallback(() => {
     return <Navigation />;
   }, []);
 
-  const BookCard = () => {
-    const theme = useTheme();
-
-    return (
-      <Card sx={{ maxWidth: 150, margin: 3 }}>
-        <CardMedia
-          component="img"
-          alt="green iguana"
-          // height="200"
-          image="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg"
-        />
-
-        <CardActions>
-          <Button size="small">read</Button>
-          <Button size="small">
-            <CloseIcon />
-          </Button>
-        </CardActions>
-      </Card>
-    );
-  };
-
-  const renderContent = useCallback(() => {
-    const theme = useTheme();
-
-    return (
-      <>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            mb: 4,
-          }}
-        >
-          <Fab color="primary" aria-label="add">
-            <AddIcon />
-          </Fab>
-          <Typography sx={{ ml: 2, fontSize: "21px" }}>
-            Add book in .epub format
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "raw",
-            width: "90%",
-            flexWrap: "wrap",
-          }}
-        >
-          {[1, 2, 3, 4, 5].map((item) => (
-            <BookCard />
-          ))}
-        </Box>
-      </>
-    );
+  useEffect(() => {
+    (async () => {
+      setBooks(await IndexedDBCacheStrategy.getAllSavedBooks());
+    })();
   }, []);
 
   return (
-    <AppLayout
-      title={"Books"}
-      renderSidebar={renderSidebar}
-      renderContent={renderContent}
-    />
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          mb: 4,
+        }}
+      >
+        <Fab color="primary" aria-label="add">
+          <AddIcon />
+        </Fab>
+        <Typography sx={{ ml: 2, fontSize: "21px" }}>
+          Add book in .epub format
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "raw",
+          width: "90%",
+          flexWrap: "wrap",
+        }}
+      >
+        {books.length
+          ? books.map((book) => <Book key={book.id} book={book} />)
+          : null}
+      </Box>
+    </>
   );
 };
 
