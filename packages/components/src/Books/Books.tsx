@@ -1,47 +1,22 @@
-import * as React from 'react';
-import { AppLayout } from '../index';
-import { useCallback } from 'react';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import * as React from "react";
+import { AppLayout } from "../index";
+import { useCallback } from "react";
+import Box from "@mui/material/Box";
 
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import ImageIcon from '@mui/icons-material/Image';
-import Divider from '@mui/material/Divider';
-import { useTheme } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import CardActions from '@mui/material/CardActions';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import CloseIcon from '@mui/icons-material/Close';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
+import Button from "@mui/material/Button";
+import { useTheme } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import CardActions from "@mui/material/CardActions";
+import CloseIcon from "@mui/icons-material/Close";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import Navigation from "../Navigation/Navigation";
 
 const Books: React.FC = (props) => {
   const renderSidebar = useCallback(() => {
-    const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'BET'];
-    return (
-      <List>
-        {sideBarItems.map((item, index) => (
-          <ListItem button key={index} sx={{ bgcolor: index == 1 ? '#1976d2' : 'white' }}>
-            <ListItemText
-              primary={item}
-              sx={{ textAlign: 'center', color: index == 1 ? 'white' : 'black' }}
-            />
-          </ListItem>
-        ))}
-      </List>
-    );
+    return <Navigation />;
   }, []);
 
   const BookCard = () => {
@@ -73,19 +48,28 @@ const Books: React.FC = (props) => {
       <>
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
             mb: 4,
           }}
         >
           <Fab color="primary" aria-label="add">
             <AddIcon />
           </Fab>
-          <Typography sx={{ ml: 2, fontSize: '21px' }}>Add book in .epub format</Typography>
+          <Typography sx={{ ml: 2, fontSize: "21px" }}>
+            Add book in .epub format
+          </Typography>
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'raw', width: '90%', flexWrap: 'wrap' }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "raw",
+            width: "90%",
+            flexWrap: "wrap",
+          }}
+        >
           {[1, 2, 3, 4, 5].map((item) => (
             <BookCard />
           ))}
@@ -94,7 +78,13 @@ const Books: React.FC = (props) => {
     );
   }, []);
 
-  return <AppLayout title={'Books'} renderSidebar={renderSidebar} renderContent={renderContent} />;
+  return (
+    <AppLayout
+      title={"Books"}
+      renderSidebar={renderSidebar}
+      renderContent={renderContent}
+    />
+  );
 };
 
 export default Books;
