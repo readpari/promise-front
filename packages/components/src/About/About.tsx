@@ -1,70 +1,25 @@
 import * as React from "react";
 import { AppLayout } from "../index";
 import { useCallback, useEffect, useState } from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
 import { text } from "./text";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { Opacity } from "@mui/icons-material";
-import { indigo } from "@mui/material/colors";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { NavLink } from "react-router-dom";
+import Navigation from "../Navigation/Navigation";
 
 interface Route {
   title: string;
   path: string;
 }
-const About: React.FC = (props) => {
-  const menuItems = ["ABOUT", "BOOKS", "READ", "BET"];
-  const renderSidebar = useCallback(() => {
-    const sideBarItems: Route[] = [
-      {
-        title: "about",
-        path: "about",
-      },
-      {
-        title: "books",
-        path: "books",
-      },
-      { title: "read", path: "read" },
-      { title: "login", path: "login" },
-      { title: "bet", path: "bet" },
-    ];
 
-    return (
-      <List>
-        {sideBarItems.map((item, index) => (
-          <NavLink
-            to={item.path}
-            children={
-              <ListItem
-                button
-                key={item.path}
-                sx={{ bgcolor: index == 0 ? "#1976d2" : "white" }}
-              >
-                <ListItemText
-                  primary={item.title}
-                  sx={{
-                    textAlign: "center",
-                    color: index == 0 ? "white" : "black",
-                  }}
-                />
-              </ListItem>
-            }
-          />
-        ))}
-      </List>
-    );
+const About: React.FC = (props) => {
+  const renderSidebar = useCallback(() => {
+    return <Navigation />;
   }, []);
 
   const renderContent = useCallback(() => {

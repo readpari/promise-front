@@ -5,7 +5,7 @@
   "author": "Evgeny <e.litvinenko@mute-lab.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "dist/components.js",
+  "main": "src",
   "directories": {
     "src": "src"
   },
