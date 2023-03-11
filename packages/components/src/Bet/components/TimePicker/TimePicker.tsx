@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { DateTimeField } from "@mui/x-date-pickers/DateTimeField";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { formatDistanceToNow, formatDistanceToNowStrict } from "date-fns";
+import { isValid, intervalToDuration } from "date-fns";
 import {
   Box,
   Button,
@@ -28,6 +28,32 @@ const TimePicker: React.FC<Props> = (props) => {
     props.onBet(selectedDate);
   }, [selectedDate]);
 
+  const renderDuration = useCallback(() => {
+    if (!isValid(selectedDate)) {
+      return "NA";
+    }
+
+    const duration = intervalToDuration({
+      start: new Date(),
+      end: selectedDate,
+    });
+
+    const hours = duration.hours;
+    const minutes = duration.minutes;
+
+    return (
+      <>
+        <span>
+          {hours} hour{hours !== 1 ? "s" : null}
+        </span>
+        &nbsp;
+        <span>
+          {minutes} minute{minutes !== 1 ? "s" : null}
+        </span>
+      </>
+    );
+  }, [selectedDate]);
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Box sx={{ maxWidth: 275 }}>
@@ -40,15 +66,14 @@ const TimePicker: React.FC<Props> = (props) => {
           inputMode={"numeric"}
         />
 
-        <Collapse in={!!selectedDate}>
+        <Collapse in={isValid(selectedDate)}>
           <Card variant={"elevation"}>
             <CardContent>
               <Typography variant="h5" component="div">
                 I will read for
               </Typography>
               <Typography sx={{ mb: "5px" }} color="text.secondary">
-                {selectedDate &&
-                  formatDistanceToNowStrict(selectedDate, { unit: "hour" })}
+                {renderDuration()}
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
@@ -57,7 +82,7 @@ const TimePicker: React.FC<Props> = (props) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button action={handleBet}>Bet</Button>
+              <Button onClick={handleBet}>Bet</Button>
             </CardActions>
           </Card>
         </Collapse>
