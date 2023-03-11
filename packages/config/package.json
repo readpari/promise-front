@@ -1,6 +1,6 @@
 {
     "name": "@promise-front/config",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "> TODO: description",
     "author": "Evgeny <e.litvinenko@mute-lab.com>",
     "homepage": "",
@@ -17,9 +17,9 @@
         "test": "node ./__tests__/config.test.js"
     },
     "devDependencies": {
-        "ts-loader": "latest",
-        "webpack": "latest",
+        "css-loader": "latest",
         "style-loader": "latest",
-        "css-loader": "latest"
+        "ts-loader": "latest",
+        "webpack": "latest"
     }
 }

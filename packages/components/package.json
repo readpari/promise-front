@@ -1,6 +1,6 @@
 {
   "name": "@promise-front/components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "components package",
   "author": "Evgeny <e.litvinenko@mute-lab.com>",
   "homepage": "",
@@ -19,14 +19,14 @@
     "build": "webpack --mode=production"
   },
   "dependencies": {
-    "@promise-front/business-layer": "^0.0.1",
-    "@mui/x-date-pickers": "latest",
-    "date-fns": "latest",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.8",
+    "@mui/x-date-pickers": "latest",
+    "@promise-front/business-layer": "^0.0.2",
+    "date-fns": "latest",
     "epubjs": "^0.3.93",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@promise-front/config": "^0.0.1",
+    "@promise-front/config": "^0.0.2",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
