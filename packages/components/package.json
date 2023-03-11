@@ -19,12 +19,14 @@
     "build": "webpack --mode=production"
   },
   "dependencies": {
+    "@promise-front/business-layer": "^0.0.1",
+    "@mui/x-date-pickers": "latest",
+    "date-fns": "latest",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.8",
-    "@promise-front/business-layer": "^0.0.1",
     "epubjs": "^0.3.93",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
