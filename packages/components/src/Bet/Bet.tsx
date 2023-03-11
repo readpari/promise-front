@@ -1,6 +1,6 @@
 import * as React from "react";
 import { AppLayout } from "../index";
-import { Fragment, useCallback, useState } from 'react'
+import { Fragment, useCallback, useState } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
@@ -15,6 +15,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Typography from "@mui/material/Typography";
 import Navigation from "../Navigation/Navigation";
+import TimePicker from "./components/TimePicker/TimePicker";
 
 const Books: React.FC = (props) => {
   const renderSidebar = useCallback(() => {
@@ -119,33 +120,12 @@ const Books: React.FC = (props) => {
             alignItems: "center",
           }}
         >
-          <BetCounter
-            step={1}
-            ci={"hours"}
-            count={hours}
-            setCount={setHours}
-            header={"How long are you going to read?"}
-          />
-          <BetCounter
-            step={1}
-            ci={"days"}
-            count={days}
-            setCount={setDays}
-            header={"How many days will you need?"}
-          />
-          <BetCounter
-            step={10}
-            ci={"near"}
-            count={betNear}
-            setCount={setBetNear}
-            header={"How much are you willing to bet?"}
-          />
-          <Button sx={{ width: "50px", m: 3 }} variant="contained">
-            BET
-          </Button>
-        </Box>
+          <Typography sx={{ fontSize: "20px", p: 3 }}>
+            {"How long are you going to read"}
+          </Typography>
 
-        <BetWas />
+          <TimePicker onBet={console.log} />
+        </Box>
       </>
     );
   }, []);

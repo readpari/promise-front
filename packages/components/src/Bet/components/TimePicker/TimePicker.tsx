@@ -28,6 +28,22 @@ const TimePicker: React.FC<Props> = (props) => {
     props.onBet(selectedDate);
   }, [selectedDate]);
 
+  const DurationItem: React.FunctionComponentFactory<{
+    type: "hour" | "day" | "minute";
+    number: number;
+  }> = ({ number, type }) => {
+    if (number === 0) {
+      return null;
+    }
+
+    return (
+      <Typography component={"span"}>
+        {number} {type}
+        {number !== 1 ? "s" : null}&nbsp;
+      </Typography>
+    );
+  };
+
   const renderDuration = useCallback(() => {
     if (!isValid(selectedDate)) {
       return "NA";
@@ -38,18 +54,15 @@ const TimePicker: React.FC<Props> = (props) => {
       end: selectedDate,
     });
 
+    const days = duration.days;
     const hours = duration.hours;
     const minutes = duration.minutes;
 
     return (
       <>
-        <span>
-          {hours} hour{hours !== 1 ? "s" : null}
-        </span>
-        &nbsp;
-        <span>
-          {minutes} minute{minutes !== 1 ? "s" : null}
-        </span>
+        <DurationItem type={"day"} number={days} />
+        <DurationItem type={"hour"} number={hours} />
+        <DurationItem type={"minute"} number={minutes} />
       </>
     );
   }, [selectedDate]);
