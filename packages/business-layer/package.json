@@ -1,6 +1,6 @@
 {
   "name": "@promise-front/business-layer",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "> TODO: description",
   "author": "Evgeny <e.litvinenko@mute-lab.com>",
   "homepage": "",
@@ -16,10 +16,10 @@
     "test": "node ./__tests__/business-layer.test.js"
   },
   "dependencies": {
-    "mobx": "^6.8.0",
-    "react-router-dom": "^6.8.2",
-    "mobx-react": "^7.6.0",
     "epubjs": "^0.3.93",
-    "idb": "^7.1.1"
+    "idb": "^7.1.1",
+    "mobx": "^6.8.0",
+    "mobx-react": "^7.6.0",
+    "react-router-dom": "^6.8.2"
   }
 }

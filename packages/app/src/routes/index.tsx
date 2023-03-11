@@ -1,17 +1,29 @@
 import * as React from "react";
-import { createHashRouter } from "react-router-dom";
-import { Bet, Book, Login } from "@promise-front/components";
+import { createHashRouter, RouteObject } from "react-router-dom";
+import { About, Bet, Book, Login } from "@promise-front/components";
 
-export default createHashRouter([
+interface RouteAdditionalInfo {
+  title: string;
+}
+
+export const routes: (RouteObject & RouteAdditionalInfo)[] = [
   {
     path: "/",
-    element: <Bet />,
-    children: [
-      { path: "login", element: <Login /> },
-      {
-        path: "book",
-        element: <Book book={null} />,
-      },
-    ],
+    title: "test",
+    element: <About />,
   },
-]);
+  {
+    path: "login",
+
+    title: "test",
+    element: <Login />,
+  },
+  { path: "bet", title: "test", element: <Bet /> },
+  {
+    path: "books",
+    title: "test",
+    element: <Book book={null} />,
+  },
+];
+
+export default createHashRouter(routes);

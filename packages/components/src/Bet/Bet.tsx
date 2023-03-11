@@ -1,35 +1,25 @@
-import * as React from 'react';
-import { AppLayout } from '../index';
-import { useCallback, useState } from 'react';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import * as React from "react";
+import { AppLayout } from "../index";
+import { Fragment, useCallback, useState } from "react";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
 
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import Typography from '@mui/material/Typography';
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import Typography from "@mui/material/Typography";
+import Navigation from "../Navigation/Navigation";
+import TimePicker from "./components/TimePicker/TimePicker";
 
 const Books: React.FC = (props) => {
   const renderSidebar = useCallback(() => {
-    const sideBarItems = ['ABOUT', 'BOOKS', 'READ', 'LOGIN', 'BET'];
-    return (
-      <List>
-        {sideBarItems.map((item, index) => (
-          <ListItem button key={index} sx={{ bgcolor: index == 3 ? '#1976d2' : 'white' }}>
-            <ListItemText
-              primary={item}
-              sx={{ textAlign: 'center', color: index == 3 ? 'white' : 'black' }}
-            />
-          </ListItem>
-        ))}
-      </List>
-    );
+    return <Navigation />;
   }, []);
 
   interface BetCounter {
@@ -51,22 +41,22 @@ const Books: React.FC = (props) => {
     return (
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <Typography sx={{ fontSize: '20px', p: 3 }}>{header}</Typography>
+        <Typography sx={{ fontSize: "20px", p: 3 }}>{header}</Typography>
 
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'raw',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            fontSize: '13px',
+            display: "flex",
+            flexDirection: "raw",
+            alignItems: "center",
+            justifyContent: "space-between",
+            fontSize: "13px",
           }}
         >
           <Box>
@@ -74,7 +64,7 @@ const Books: React.FC = (props) => {
               <RemoveIcon />
             </Fab>
           </Box>
-          <Typography sx={{ display: 'flex', justifyContent: 'center', p: 3 }}>
+          <Typography sx={{ display: "flex", justifyContent: "center", p: 3 }}>
             {count} {ci}
           </Typography>
           <Box>
@@ -89,26 +79,26 @@ const Books: React.FC = (props) => {
 
   const BetWas = () => {
     const style = {
-      width: '100%',
+      width: "100%",
       maxWidth: 360,
-      bgcolor: 'background.paper',
+      bgcolor: "background.paper",
     };
 
-    const betWasOptions = ['Hours', 'Deadline', 'Bet', 'Timer'];
+    const betWasOptions = ["Hours", "Deadline", "Bet", "Timer"];
     return (
       <>
-        <Typography sx={{ textAlign: 'center' }} variant="h5" component="h5">
+        <Typography sx={{ textAlign: "center" }} variant="h5" component="h5">
           Your bet
         </Typography>
         <List sx={style} component="nav" aria-label="mailbox folders">
           {betWasOptions.map((item) => (
-            <>
+            <Fragment key={item}>
               <ListItem>
                 <ListItemText primary={item} />
-                <ListItemText primary="123" sx={{ textAlign: 'right' }} />
+                <ListItemText primary="123" sx={{ textAlign: "right" }} />
               </ListItem>
               <Divider />
-            </>
+            </Fragment>
           ))}
         </List>
       </>
@@ -124,44 +114,29 @@ const Books: React.FC = (props) => {
       <>
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <BetCounter
-            step={1}
-            ci={'hours'}
-            count={hours}
-            setCount={setHours}
-            header={'How long are you going to read?'}
-          />
-          <BetCounter
-            step={1}
-            ci={'days'}
-            count={days}
-            setCount={setDays}
-            header={'How many days will you need?'}
-          />
-          <BetCounter
-            step={10}
-            ci={'near'}
-            count={betNear}
-            setCount={setBetNear}
-            header={'How much are you willing to bet?'}
-          />
-          <Button sx={{ width: '50px', m: 3 }} variant="contained">
-            BET
-          </Button>
-        </Box>
+          <Typography sx={{ fontSize: "20px", p: 3 }}>
+            {"How long are you going to read"}
+          </Typography>
 
-        <BetWas />
+          <TimePicker onBet={console.log} />
+        </Box>
       </>
     );
   }, []);
 
-  return <AppLayout title={'Bet'} renderSidebar={renderSidebar} renderContent={renderContent} />;
+  return (
+    <AppLayout
+      title={"Bet"}
+      renderSidebar={renderSidebar}
+      renderContent={renderContent}
+    />
+  );
 };
 
 export default Books;
