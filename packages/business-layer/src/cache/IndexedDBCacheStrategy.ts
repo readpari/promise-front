@@ -60,4 +60,20 @@ export class IndexedDBCacheStrategy
 
     await db.put(IndexedDBCacheStrategy.STORE_NAME, savedBook, savedBook.id);
   }
+
+  async delete(book: BookImpl): Promise<void>;
+  async delete(bookId: string): Promise<void>;
+  async delete(book: BookImpl | string): Promise<void> {
+    let bookId;
+
+    if (book instanceof BookImpl) {
+      bookId = await this.getBookId(book);
+    } else {
+      bookId = book;
+    }
+
+    const db = await IndexedDBCacheStrategy.dbFactory();
+
+    await db.delete(IndexedDBCacheStrategy.STORE_NAME, bookId);
+  }
 }

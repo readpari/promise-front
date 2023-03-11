@@ -10,8 +10,8 @@ export interface Book {
   getAnnotations(): Promise<EpubJS.NavItem[]>;
   getMetaField(field: string): Promise<string>;
   getLocation(): EpubJS.Location;
-
   getBuffer(): ArrayBuffer;
+  waitUntilReady(): Promise<void>;
 }
 
 export class BookImpl implements Book {
@@ -43,7 +43,7 @@ export class BookImpl implements Book {
     // книга из кэша
     const cachedBook = await this.cacheStrategy.get(this);
 
-    if (cachedBook) {
+    if (cachedBook && cachedBook.location) {
       await this.rendition.display(cachedBook.location.start.cfi);
     } else {
       await this.cacheStrategy.save(this);
@@ -80,6 +80,10 @@ export class BookImpl implements Book {
   }
 
   getLocation(): EpubJS.Location {
+    if (!this.rendition) {
+      return null;
+    }
+
     return this.rendition.currentLocation() as unknown as EpubJS.Location;
   }
 
@@ -91,5 +95,9 @@ export class BookImpl implements Book {
 
   getBuffer(): ArrayBuffer {
     return this.buffer;
+  }
+
+  async waitUntilReady(): Promise<void> {
+    await this.bookInstance.ready;
   }
 }
