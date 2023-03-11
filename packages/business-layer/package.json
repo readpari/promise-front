@@ -21,7 +21,8 @@
     "idb": "^7.1.1",
     "mobx": "^6.8.0",
     "mobx-react": "^7.6.0",
-    "react-router-dom": "^6.8.2"
+    "react-router-dom": "^6.8.2",
+    "near-api-js": "latest"
   },
   "devDependencies": {
     "@types/uuid": "latest"

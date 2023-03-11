@@ -1,0 +1,17 @@
+0 silly argv {
+0 silly argv   _: [ 'bootstrap' ],
+0 silly argv   lernaVersion: '6.5.1',
+0 silly argv   '$0': 'node_modules/.bin/lerna'
+0 silly argv }
+1 notice cli v6.5.1
+2 verbose rootPath /home/user/work/promise-front
+3 error Error: Invalid package name "@near-wallet-selector": name can only contain URL-friendly characters
+3 error     at invalidPackageName (/home/user/work/promise-front/node_modules/lerna/node_modules/npm-package-arg/npa.js:89:15)
+3 error     at Result.setName (/home/user/work/promise-front/node_modules/lerna/node_modules/npm-package-arg/npa.js:124:11)
+3 error     at new Result (/home/user/work/promise-front/node_modules/lerna/node_modules/npm-package-arg/npa.js:114:23)
+3 error     at Function.resolve (/home/user/work/promise-front/node_modules/lerna/node_modules/npm-package-arg/npa.js:61:15)
+3 error     at /home/user/work/promise-front/node_modules/lerna/dist/cli.js:669:61
+3 error     at Array.forEach (<anonymous>)
+3 error     at /home/user/work/promise-front/node_modules/lerna/dist/cli.js:649:42
+3 error     at Map.forEach (<anonymous>)
+3 error     at new PackageGraph (/home/user/work/promise-front/node_modules/lerna/dist/cli.js:642:14)
