@@ -1,15 +1,16 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import { NavLink as NavLinkBase } from "react-router-dom";
-import { Box, List, ListItem, ListItemText } from "@mui/material";
-
-const NavLink = styled(NavLinkBase)`
-  text-decoration: none;
-`;
+import { Box, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+  Route,
+} from "react-router-dom";
 
 interface Route {
   path: string;
   title: string;
+  icon?: React.ReactElement;
 }
 
 const routes: Route[] = [
@@ -32,28 +33,40 @@ const routes: Route[] = [
   },
 ];
 
+const Link = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(function Link(
+  itemProps,
+  ref
+) {
+  return <RouterLink ref={ref} {...itemProps} role={undefined} />;
+});
+
+function ListItemLink(props: Route) {
+  const { icon, title, path } = props;
+
+  return (
+    <li>
+      <ListItem button component={Link} to={path}>
+        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+        <ListItemText primary={title} />
+      </ListItem>
+    </li>
+  );
+}
+
 const Navigation: React.FC = () => {
   return (
-    <Box>
-      <List>
-        {routes.map((route, index) => (
-          <NavLink
-            key={route.path}
-            to={route.path}
-            children={
-              <ListItem
-                key={route.path}
-                sx={{ bgcolor: index == 0 ? "#1976d2" : "white" }}
-              >
-                <ListItemText
-                  sx={{ textAlign: "center" }}
-                  primary={route.title}
-                />
-              </ListItem>
-            }
-          />
-        ))}
-      </List>
+    <Box sx={{ width: 360 }}>
+      <Paper elevation={0}>
+        <List aria-label="main mailbox folders">
+          {routes.map((route) => (
+            <ListItemLink
+              path={route.path}
+              title={route.title}
+              icon={route.icon}
+            />
+          ))}
+        </List>
+      </Paper>
     </Box>
   );
 };
