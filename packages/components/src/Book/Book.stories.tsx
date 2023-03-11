@@ -1,6 +1,7 @@
 import * as React from "react";
 import Book from "./Book";
 import { createRef, useCallback, useState } from "react";
+import { BookImpl } from "@promise-front/business-layer/src/Book";
 
 export default {
   /* 👇 The title prop is optional.

@@ -36,7 +36,7 @@ const routes: Route[] = [
     icon: <BookIcon />,
   },
   {
-    path: "/book/",
+    path: "/book",
     title: "Read",
     icon: <LocalLibraryIcon />,
   },

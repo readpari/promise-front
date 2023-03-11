@@ -15,4 +15,6 @@ export type SavedBookInfo = SavedBook;
 export interface CacheBookStrategy {
   save(book: BookImpl): Promise<void>;
   get(book: BookImpl): Promise<SavedBook>;
+  delete(book: BookImpl): Promise<void>;
+  delete(bookId: string): Promise<void>;
 }

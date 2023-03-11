@@ -11,8 +11,10 @@ import {
 
 interface Props {
   book: SavedBook;
+  onDelete: React.Dispatch<void>;
+  onStartRead: React.Dispatch<void>;
 }
-const Book: React.FC<Props> = ({ book }) => {
+const Book: React.FC<Props> = ({ book, ...props }) => {
   return (
     <Card sx={{ maxWidth: 350, margin: 3 }}>
       <CardMedia
@@ -30,8 +32,12 @@ const Book: React.FC<Props> = ({ book }) => {
       </CardContent>
 
       <CardActions>
-        <Button size="small">Read</Button>
-        <Button size="small">Delete</Button>
+        <Button onClick={() => props.onStartRead()} size="small">
+          Read
+        </Button>
+        <Button onClick={() => props.onDelete()} size="small">
+          Delete
+        </Button>
       </CardActions>
     </Card>
   );

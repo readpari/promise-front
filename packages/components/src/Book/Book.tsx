@@ -28,7 +28,6 @@ const Book: React.FC<Props> = (props) => {
       book.render("book");
       setAnnotations(await book.getAnnotations());
       setTitle(await book.getMetaField("title"));
-      console.log(await book.getMetaField("title"));
     })();
   }, [props.book]);
 

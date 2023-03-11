@@ -5,7 +5,7 @@ import {
   Bet,
   Books,
   Login,
-  Book,
+  BookPage,
   AppLayout,
 } from "@promise-front/components";
 
@@ -29,7 +29,7 @@ export const routes: RouteObject[] = [
       },
       {
         path: "/book/:id?",
-        element: <Book book={null} />,
+        element: <BookPage />,
       },
     ],
   },

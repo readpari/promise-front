@@ -16,10 +16,14 @@
     "test": "node ./__tests__/business-layer.test.js"
   },
   "dependencies": {
+    "uuid": "latest",
     "epubjs": "^0.3.93",
     "idb": "^7.1.1",
     "mobx": "^6.8.0",
     "mobx-react": "^7.6.0",
     "react-router-dom": "^6.8.2"
+  },
+  "devDependencies": {
+    "@types/uuid": "latest"
   }
 }
