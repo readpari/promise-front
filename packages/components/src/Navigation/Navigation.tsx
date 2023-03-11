@@ -25,18 +25,18 @@ const routes: Route[] = [
     icon: <InfoIcon />,
   },
   {
-    path: "login",
+    path: "/login",
     title: "Login",
     icon: <LoginIcon />,
   },
-  { path: "bet", title: "Bet", icon: <CurrencyBitcoinIcon /> },
+  { path: "/bet", title: "Bet", icon: <CurrencyBitcoinIcon /> },
   {
-    path: "books",
+    path: "/books",
     title: "Books",
     icon: <BookIcon />,
   },
   {
-    path: "read",
+    path: "/read",
     title: "Read",
     icon: <LocalLibraryIcon />,
   },
@@ -69,6 +69,7 @@ const Navigation: React.FC = () => {
         <List aria-label="main mailbox folders">
           {routes.map((route) => (
             <ListItemLink
+              key={route.path}
               path={route.path}
               title={route.title}
               icon={route.icon}

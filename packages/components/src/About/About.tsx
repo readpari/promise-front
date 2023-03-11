@@ -25,9 +25,6 @@ const About: React.FC = (props) => {
   const renderContent = useCallback(() => {
     const [value, setValue] = React.useState(1);
     const [textLang, setTextLang] = React.useState(text["RU"]);
-    useEffect(() => {
-      console.log(textLang);
-    }, []);
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue);
       setTextLang(text[Object.keys(text)[newValue]]);
