@@ -1,5 +1,10 @@
 import * as React from "react";
 import { Box, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
+import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
+import BookIcon from "@mui/icons-material/Book";
+import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
+import InfoIcon from "@mui/icons-material/Info";
 import Paper from "@mui/material/Paper";
 import {
   Link as RouterLink,
@@ -17,19 +22,23 @@ const routes: Route[] = [
   {
     path: "/",
     title: "About",
+    icon: <InfoIcon />,
   },
   {
     path: "login",
     title: "Login",
+    icon: <LoginIcon />,
   },
-  { path: "bet", title: "Bet" },
+  { path: "bet", title: "Bet", icon: <CurrencyBitcoinIcon /> },
   {
     path: "books",
     title: "Books",
+    icon: <BookIcon />,
   },
   {
     path: "read",
     title: "Read",
+    icon: <LocalLibraryIcon />,
   },
 ];
 
@@ -55,7 +64,7 @@ function ListItemLink(props: Route) {
 
 const Navigation: React.FC = () => {
   return (
-    <Box sx={{ width: 360 }}>
+    <Box>
       <Paper elevation={0}>
         <List aria-label="main mailbox folders">
           {routes.map((route) => (
